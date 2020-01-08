@@ -1,0 +1,22 @@
+*:root {
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*::before,
+::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  line-height: 1.7;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  min-height: 100vh;
+}
