@@ -11,6 +11,8 @@ class ProductList extends Component {
   render() {
     const { products } = this.props.products;
 
+    console.log(products);
+
     return (
       <div className="container text-center py-3">
         <h2>Product List</h2>
