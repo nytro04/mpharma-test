@@ -1,4 +1,9 @@
-import { FETCH_PRODUCTS, CREATE_PRODUCT } from "../actions/types";
+import {
+  FETCH_PRODUCTS,
+  CREATE_PRODUCT,
+  EDIT_PRODUCT,
+  DELETE_PRODUCT
+} from "../actions/types";
 
 const INITIAL_STATE = {
   products: JSON.parse(localStorage.getItem("mPharma")) || [
@@ -62,7 +67,14 @@ export default (state = INITIAL_STATE, action) => {
   switch (type) {
     case FETCH_PRODUCTS:
       return state;
+    // return {
+    //   ...state,
+    //   products: JSON.parse(localStorage.getItem("mPharma"))
+    // };
     case CREATE_PRODUCT:
+      // let productState = JSON.parse(localStorage.getItem("mPharma"));
+      // productState = productState ? productState : state.products;
+
       localStorage.setItem(
         "mPharma",
         JSON.stringify([...productState, payload])
@@ -71,6 +83,59 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         products: JSON.parse(localStorage.getItem("mPharma"))
       };
+    case EDIT_PRODUCT:
+      // productState = JSON.parse(localStorage.getItem("mPharma"));
+      // productState = productState ? productState : state.products;
+
+      // const { id } = payload;
+      console.log(payload.id);
+
+      // const updateProduct = [
+      //   ...JSON.parse(localStorage.getItem("mPharma")),
+      //   payload
+      // ];
+
+      // console.log(updateProduct);
+
+      // localStorage.setItem("mPharma", JSON.stringify(updateProduct));
+
+      localStorage.setItem(
+        "mPharma",
+        JSON.stringify([
+          ...productState.filter(productItem => productItem.id !== payload.id)
+        ])
+      );
+
+      JSON.parse(localStorage.getItem("mPharma"));
+
+      localStorage.setItem(
+        "mPharma",
+        JSON.stringify([...productState, payload])
+      );
+
+      return {
+        ...state,
+        products: JSON.parse(localStorage.getItem("mPharma"))
+        // products: localStorage.setItem("mPharma", JSON.stringify(updateProduct))
+      };
+
+    case DELETE_PRODUCT:
+      // productState = JSON.parse(localStorage.getItem("mPharma"));
+      // productState = productState ? productState : state.products;
+
+      console.log(payload);
+
+      localStorage.setItem(
+        "mPharma",
+        JSON.stringify([
+          ...productState.filter(productItem => productItem.id !== payload)
+        ])
+      );
+      return {
+        ...state,
+        products: JSON.parse(localStorage.getItem("mPharma"))
+      };
+
     default:
       return state;
   }

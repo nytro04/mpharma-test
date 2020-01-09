@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { deleteProduct } from "./../../actions";
 
 class Product extends Component {
   checkDates = prices => {
@@ -19,6 +21,11 @@ class Product extends Component {
     }
   };
 
+  // onDelete = id => {
+  //   console.log(id);
+  //   this.props.deleteProduct(id);
+  // };
+
   render() {
     const { product } = this.props;
 
@@ -30,9 +37,9 @@ class Product extends Component {
           <i
             className="fas fa-times"
             style={{ cursor: "pointer", float: "right", color: "red" }}
-            // onClick={this.onDeleteClick.bind(this, id)}
+            onClick={() => this.props.deleteProduct(product.id)}
           />
-          <Link to={`contact/edit/${product.id}`}>
+          <Link to={`products/edit/${product.id}`}>
             <i
               className="fas fa-pencil-alt"
               style={{
@@ -57,4 +64,4 @@ class Product extends Component {
   }
 }
 
-export default Product;
+export default connect(null, { deleteProduct })(Product);
