@@ -3,18 +3,20 @@ import { Link } from "react-router-dom";
 
 class Product extends Component {
   checkDates = prices => {
-    if (prices[0].date > prices[1].date) {
+    if (Array.isArray(prices)) {
+      if (prices[0].date > prices[1].date) {
+        return (
+          <li key={prices[0].id} className="list-group-item">
+            Prices: {prices[0].price}
+          </li>
+        );
+      }
       return (
-        <li key={prices[0].id} className="list-group-item">
-          Prices: {prices[0].price}
+        <li key={prices[1].id} className="list-group-item">
+          Prices: {prices[1].price}
         </li>
       );
     }
-    return (
-      <li key={prices[1].id} className="list-group-item">
-        Prices: {prices[1].price}
-      </li>
-    );
   };
 
   render() {
@@ -43,7 +45,13 @@ class Product extends Component {
           </Link>
         </h4>
 
-        <ul className="list-group">{this.checkDates(product.prices)}</ul>
+        <ul className="list-group">
+          {Array.isArray(product.prices) ? (
+            this.checkDates(product.prices)
+          ) : (
+            <li className="list-group-item">Prices: {product.prices}</li>
+          )}
+        </ul>
       </div>
     );
   }
