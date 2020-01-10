@@ -6,7 +6,7 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
-  products: JSON.parse(localStorage.getItem("mPharma")) || [
+  products: [
     {
       id: 1,
       name: "Exforge 10mg",
@@ -61,20 +61,13 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
 
-  let productState = JSON.parse(localStorage.getItem("mPharma"));
+  let productState = [];
+
+  productState = JSON.parse(localStorage.getItem("mPharma"));
   productState = productState ? productState : state.products;
 
   switch (type) {
-    case FETCH_PRODUCTS:
-      return state;
-    // return {
-    //   ...state,
-    //   products: JSON.parse(localStorage.getItem("mPharma"))
-    // };
     case CREATE_PRODUCT:
-      // let productState = JSON.parse(localStorage.getItem("mPharma"));
-      // productState = productState ? productState : state.products;
-
       localStorage.setItem(
         "mPharma",
         JSON.stringify([...productState, payload])
@@ -84,9 +77,6 @@ export default (state = INITIAL_STATE, action) => {
         products: JSON.parse(localStorage.getItem("mPharma"))
       };
     case EDIT_PRODUCT:
-      // productState = JSON.parse(localStorage.getItem("mPharma"));
-      // productState = productState ? productState : state.products;
-
       // const { id } = payload;
       console.log(payload.id);
 
@@ -120,17 +110,36 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case DELETE_PRODUCT:
-      // productState = JSON.parse(localStorage.getItem("mPharma"));
-      // productState = productState ? productState : state.products;
-
       console.log(payload);
+      console.log(productState, "%%%%%  product state");
 
-      localStorage.setItem(
-        "mPharma",
-        JSON.stringify([
-          ...productState.filter(productItem => productItem.id !== payload)
-        ])
+      let newArray = [];
+      newArray = productState.filter(productItem => productItem.id !== payload);
+
+      console.log(newArray, "******* new array");
+
+      console.log(
+        JSON.parse(localStorage.getItem("mPharma")),
+        "local storage before delete"
       );
+
+      localStorage.setItem("mPharma", JSON.stringify([newArray]));
+
+      console.log(
+        localStorage.setItem("mPharma", JSON.stringify(newArray)),
+        "after deleting"
+      );
+
+      JSON.parse(localStorage.getItem("mPharma"));
+      return {
+        ...state,
+        products: JSON.parse(localStorage.getItem("mPharma"))
+      };
+
+    case FETCH_PRODUCTS:
+      localStorage.setItem("mPharma", JSON.stringify(state.products));
+
+      // return state;
       return {
         ...state,
         products: JSON.parse(localStorage.getItem("mPharma"))
