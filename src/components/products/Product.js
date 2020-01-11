@@ -35,7 +35,7 @@ class Product extends Component {
           <span className="mr-3">Name:</span>
           {product.name}
           <i
-            className="fas fa-times"
+            className="far fa-trash-alt"
             style={{ cursor: "pointer", float: "right", color: "red" }}
             onClick={() => this.props.deleteProduct(product.id)}
           />

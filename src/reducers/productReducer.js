@@ -77,36 +77,19 @@ export default (state = INITIAL_STATE, action) => {
         products: JSON.parse(localStorage.getItem("mPharma"))
       };
     case EDIT_PRODUCT:
-      // const { id } = payload;
-      console.log(payload.id);
+      const { id, formValues } = payload;
 
-      // const updateProduct = [
-      //   ...JSON.parse(localStorage.getItem("mPharma")),
-      //   payload
-      // ];
+      let newEditArray = [...productState];
 
-      // console.log(updateProduct);
-
-      // localStorage.setItem("mPharma", JSON.stringify(updateProduct));
-
-      localStorage.setItem(
-        "mPharma",
-        JSON.stringify([
-          ...productState.filter(productItem => productItem.id !== payload.id)
-        ])
+      newEditArray = productState.map(productItem =>
+        productItem.id === Number(id) ? formValues : productItem
       );
 
-      JSON.parse(localStorage.getItem("mPharma"));
-
-      localStorage.setItem(
-        "mPharma",
-        JSON.stringify([...productState, payload])
-      );
+      localStorage.setItem("mPharma", JSON.stringify(newEditArray));
 
       return {
         ...state,
         products: JSON.parse(localStorage.getItem("mPharma"))
-        // products: localStorage.setItem("mPharma", JSON.stringify(updateProduct))
       };
 
     case DELETE_PRODUCT:

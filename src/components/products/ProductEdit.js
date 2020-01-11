@@ -34,8 +34,6 @@ class ProductEdit extends Component {
       date: Date.now()
     };
 
-    console.log(updateProduct);
-
     this.props.updateProduct(id, updateProduct);
 
     this.setState({
@@ -64,6 +62,7 @@ class ProductEdit extends Component {
               <div className="card-body">
                 <form onSubmit={this.handleSubmit}>
                   <TextInput
+                    type="text"
                     label="Product Name"
                     name="name"
                     placeholder="Enter Product Name"
@@ -72,6 +71,7 @@ class ProductEdit extends Component {
                     error={errors.name}
                   />
                   <TextInput
+                    type="text"
                     label="Product Price"
                     name="prices"
                     placeholder="Enter Product Price"

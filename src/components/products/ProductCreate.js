@@ -34,8 +34,6 @@ class ProductCreate extends Component {
       date: Date.now()
     };
 
-    console.log(newProduct);
-
     this.props.createProduct(newProduct);
 
     this.setState({
