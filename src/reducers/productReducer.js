@@ -93,18 +93,8 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case DELETE_PRODUCT:
-      console.log(payload);
-      console.log(productState, "%%%%%  product state");
-
       let newArray = [];
       newArray = productState.filter(productItem => productItem.id !== payload);
-
-      console.log(newArray, "******* new array");
-
-      console.log(
-        JSON.parse(localStorage.getItem("mPharma")),
-        "local storage before delete"
-      );
 
       localStorage.setItem("mPharma", JSON.stringify([newArray]));
 
@@ -120,9 +110,8 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case FETCH_PRODUCTS:
-      localStorage.setItem("mPharma", JSON.stringify(state.products));
+      // localStorage.setItem("mPharma", JSON.stringify(state.products));
 
-      // return state;
       return {
         ...state,
         products: JSON.parse(localStorage.getItem("mPharma"))
