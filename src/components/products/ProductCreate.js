@@ -30,7 +30,7 @@ class ProductCreate extends Component {
     const newProduct = {
       id,
       name,
-      prices,
+      prices: Number(prices),
       date: Date.now()
     };
 
@@ -64,6 +64,7 @@ class ProductCreate extends Component {
                   <TextInput
                     label="Product Name"
                     name="name"
+                    type="text"
                     placeholder="Enter Product Name"
                     value={name}
                     onChange={this.onChange}
@@ -72,6 +73,7 @@ class ProductCreate extends Component {
                   <TextInput
                     label="Product Price"
                     name="prices"
+                    type="number"
                     placeholder="Enter Product Price"
                     value={prices}
                     onChange={this.onChange}

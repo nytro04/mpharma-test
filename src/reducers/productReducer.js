@@ -6,7 +6,7 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
-  products: [
+  products: JSON.parse(localStorage.getItem("mPharma")) || [
     {
       id: 1,
       name: "Exforge 10mg",
@@ -64,7 +64,7 @@ export default (state = INITIAL_STATE, action) => {
   let productState = [];
 
   productState = JSON.parse(localStorage.getItem("mPharma"));
-  productState = productState ? productState : state.products;
+  productState = productState ? productState : [];
 
   switch (type) {
     case CREATE_PRODUCT:
@@ -111,6 +111,10 @@ export default (state = INITIAL_STATE, action) => {
 
     case FETCH_PRODUCTS:
       // localStorage.setItem("mPharma", JSON.stringify(state.products));
+
+      // if (!JSON.parse(localStorage.getItem("mPharma"))) {
+      //   localStorage.setItem("mPharma", JSON.stringify(state.products));
+      // }
 
       return {
         ...state,
