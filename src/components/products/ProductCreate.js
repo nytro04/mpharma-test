@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import moment from "moment";
 import TextInput from "../utils/TextInput";
 import { createProduct } from "./../../actions";
 
@@ -31,7 +32,7 @@ class ProductCreate extends Component {
       id,
       name,
       prices: Number(prices),
-      date: Date.now()
+      date: moment().format()
     };
 
     this.props.createProduct(newProduct);
