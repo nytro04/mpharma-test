@@ -17,8 +17,8 @@ class ProductList extends Component {
         <div className="row justify-content-center py-5">
           <div className="col-md-8">
             {products
-              ? products.map(product => (
-                  <Product key={product.id} product={product} />
+              ? products.map((product, index) => (
+                  <Product key={index} product={product} />
                 ))
               : null}
           </div>

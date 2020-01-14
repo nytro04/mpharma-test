@@ -81,6 +81,8 @@ export default (state = INITIAL_STATE, action) => {
 
       let newEditArray = [...productState];
 
+      formValues.id = Number(id);
+
       newEditArray = productState.map(productItem =>
         productItem.id === Number(id) ? formValues : productItem
       );
@@ -93,13 +95,19 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case DELETE_PRODUCT:
-      let newArray = [];
-      newArray = productState.filter(productItem => productItem.id !== payload);
+      let newDeleteArray = [...productState];
 
-      localStorage.setItem("mPharma", JSON.stringify([newArray]));
+      newDeleteArray = productState.map(productItem =>
+        productItem.id === Number(payload.id) ? payload.prices : productItem
+      );
+
+      localStorage.setItem(
+        "mPharma",
+        JSON.stringify([...state.products, newDeleteArray])
+      );
 
       console.log(
-        localStorage.setItem("mPharma", JSON.stringify(newArray)),
+        localStorage.setItem("mPharma", JSON.stringify(newDeleteArray)),
         "after deleting"
       );
 

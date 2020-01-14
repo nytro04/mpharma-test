@@ -21,46 +21,50 @@ class Product extends Component {
     }
   };
 
-  // onDelete = id => {
-  //   console.log(id);
-  //   this.props.deleteProduct(id);
-  // };
+  showCards = product => {
+    if (product.name) {
+      return (
+        <div className="card card-body mb-3">
+          <h4>
+            <span className="mr-3">Name:</span>
+            {product.name}
+            <i
+              className="far fa-trash-alt"
+              style={{ cursor: "pointer", float: "right", color: "red" }}
+              onClick={() =>
+                this.props.deleteProduct(product.id, product.prices)
+              }
+            />
+            <Link to={`products/edit/${product.id}`}>
+              <i
+                className="fas fa-pencil-alt"
+                style={{
+                  cursor: "pointer",
+                  float: "right",
+                  color: "black",
+                  marginRight: "1rem"
+                }}
+              />
+            </Link>
+          </h4>
+
+          <ul className="list-group">
+            {Array.isArray(product.prices) ? (
+              this.checkDates(product.prices)
+            ) : (
+              <li className="list-group-item">Prices: {product.prices}</li>
+            )}
+          </ul>
+        </div>
+      );
+    }
+    return null;
+  };
 
   render() {
     const { product } = this.props;
 
-    return (
-      <div className="card card-body mb-3">
-        <h4>
-          <span className="mr-3">Name:</span>
-          {product.name}
-          <i
-            className="far fa-trash-alt"
-            style={{ cursor: "pointer", float: "right", color: "red" }}
-            onClick={() => this.props.deleteProduct(product.id)}
-          />
-          <Link to={`products/edit/${product.id}`}>
-            <i
-              className="fas fa-pencil-alt"
-              style={{
-                cursor: "pointer",
-                float: "right",
-                color: "black",
-                marginRight: "1rem"
-              }}
-            />
-          </Link>
-        </h4>
-
-        <ul className="list-group">
-          {Array.isArray(product.prices) ? (
-            this.checkDates(product.prices)
-          ) : (
-            <li className="list-group-item">Prices: {product.prices}</li>
-          )}
-        </ul>
-      </div>
-    );
+    return <div>{this.showCards(product)}</div>;
   }
 }
 

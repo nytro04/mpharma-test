@@ -26,6 +26,6 @@ export const updateProduct = (id, formValues) => async dispatch => {
   dispatch({ type: EDIT_PRODUCT, payload: { id, formValues } });
 };
 
-export const deleteProduct = id => async dispatch => {
-  dispatch({ type: DELETE_PRODUCT, payload: id });
+export const deleteProduct = (id, prices) => async dispatch => {
+  dispatch({ type: DELETE_PRODUCT, payload: { id, prices } });
 };
