@@ -110,7 +110,7 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case FETCH_PRODUCTS:
-      // localStorage.setItem("mPharma", JSON.stringify(state.products));
+      localStorage.setItem("mPharma", JSON.stringify(state.products));
 
       // if (!JSON.parse(localStorage.getItem("mPharma"))) {
       //   localStorage.setItem("mPharma", JSON.stringify(state.products));
