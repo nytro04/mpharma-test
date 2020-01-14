@@ -30,7 +30,7 @@ class ProductEdit extends Component {
     const updateProduct = {
       id,
       name,
-      prices,
+      prices: Number(prices),
       date: Date.now()
     };
 
@@ -71,9 +71,9 @@ class ProductEdit extends Component {
                     error={errors.name}
                   />
                   <TextInput
-                    type="text"
                     label="Product Price"
                     name="prices"
+                    type="number"
                     placeholder="Enter Product Price"
                     value={prices}
                     onChange={this.onChange}
