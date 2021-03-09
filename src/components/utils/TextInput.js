@@ -1,5 +1,5 @@
-import React from "react";
-import classnames from "classnames";
+import React from 'react'
+import classnames from 'classnames'
 
 const TextInput = ({
   name,
@@ -11,7 +11,7 @@ const TextInput = ({
   onChange
 }) => {
   return (
-    <div className="form-group">
+    <div className='form-group'>
       <label htmlFor={name}>{label}</label>
       <input
         type={type}
@@ -19,11 +19,11 @@ const TextInput = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={classnames("form-control", { "is-invalid": error })}
+        className={classnames('form-control', { 'is-invalid': error })}
       />
-      {error && <div className="invalid-feedback">{error}</div>}
+      {error && <div className='invalid-feedback'>{error}</div>}
     </div>
-  );
-};
+  )
+}
 
-export default TextInput;
+export default TextInput
