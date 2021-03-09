@@ -19,16 +19,16 @@ const Navbar = () => {
         <span className='navbar-toggler-icon'></span>
       </button>
 
-      {/* <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul className="mt-2 ml-auto navbar-nav mt-lg-0">
-          <li className="nav-item active">
-            <Link className="nav-link" to="/products/new">
-              <i className="mr-2 fas fa-plus"></i>
+      <div className='collapse navbar-collapse' id='navbarTogglerDemo02'>
+        <ul className='mt-2 ml-auto navbar-nav mt-lg-0'>
+          <li className='nav-item active'>
+            <Link className='nav-link' to='/products/new'>
+              <i className='mr-2 fas fa-plus'></i>
               create new product
             </Link>
           </li>
         </ul>
-      </div> */}
+      </div>
     </nav>
   )
 }
