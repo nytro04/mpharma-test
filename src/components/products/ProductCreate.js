@@ -34,7 +34,7 @@ class ProductCreate extends Component {
       // errors: {}
     })
 
-    // this.props.history.push('/')
+    this.props.history.push('/')
   }
 
   onChange = (e) => {
