@@ -10,7 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 2. Navigate to the cloned directory on your local machine.
 3. Run "npm install" to install the necessary dependencies.
 4. Run "npm start" to start running the development server.
-5. Open http://localhost:3000 to view it in the browser.
+5. 4. Run "npm run test" to run the unit tests.
+6. Open http://localhost:3000 to view it in the browser.
 
 ```
 
